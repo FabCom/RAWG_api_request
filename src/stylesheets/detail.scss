@@ -1,0 +1,48 @@
+#game-detail{
+  #image{
+    img{
+      width: 100%;
+    }
+    a{
+      position: relative;
+      top: -60px;
+      left: 80%;
+      padding: 10px;
+      background-color: $secondary-color;
+      color: $primary-color;
+      border-radius: 10px;
+      font-size: small;
+    }
+  }
+
+  p{
+    font-size: 0.5em;
+  }
+  #informations{
+    @include flex-row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  .item{
+    width: 20%;
+  }
+
+  #genres{
+    width: 40%;
+  }
+
+  #tags{
+    width: 60%;
+  }
+
+  #screenshots{
+    @include flex-row;
+
+    img{
+      width:20%;
+      margin:10px;
+    }
+  }
+}
+

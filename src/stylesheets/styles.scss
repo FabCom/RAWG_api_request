@@ -1,0 +1,11 @@
+@import "variables";
+@import 'mixin';
+@import 'body';
+@import 'menu';
+@import 'content';
+@import 'detail';
+
+h1 {
+  color: $primary-color;
+  background-color: $bg;
+}
