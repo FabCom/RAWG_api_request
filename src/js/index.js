@@ -9,7 +9,7 @@ class App{
   }
 
   addMenu(){
-    let items = [{"text":"Accueil", "href":"#"},{'text':'Parcourir', 'href':'#list'},{'text':'Hasard','href':'#list?search=Doom'}];
+    let items = [{"text":"Accueil", "href":"#list?dates=2021-06-01,2022-06-01&ordering=-added"},{'text':'Parcourir', 'href':'#list'},{'text':'Hasard','href':'#detail?id='+ Math.floor(Math.random() * 675024)}];
     let body_div = document.getElementById('menu');
     for(let item of items){
       let link = document.createElement('a');

@@ -18,7 +18,7 @@ export const PageList = (urlParams) => {
           select.add(option);
         });
         select.addEventListener("change", (event) => {
-          location.href='#list?search='+urlParams.get('search')+'&page='+urlParams.get('page')+'&platforms='+event.target.value;
+          location.href='#list?search='+urlParams.get('search')+'&page='+urlParams.get('page')+'&platforms='+event.target.value+'&dates='+urlParams.get('dates')+'&ordering='+urlParams.get('ordering');
         });
       });
 
@@ -36,7 +36,7 @@ export const PageList = (urlParams) => {
         let btn_next = document.createElement('button');
         btn_next.textContent = "Page précédente";
         btn_next.addEventListener('click', () => {
-          location.href='#list?search='+requestParams.get('search')+'&page='+requestParams.get('page')+'&platforms='+requestParams.get('platforms');
+          location.href='#list?search='+requestParams.get('search')+'&page='+requestParams.get('page')+'&platforms='+requestParams.get('platforms')+'&dates='+requestParams.get('dates')+'&ordering='+requestParams.get('ordering');
         })
         div_nav.appendChild(btn_next);
       }
@@ -45,7 +45,7 @@ export const PageList = (urlParams) => {
         let btn_next = document.createElement('button');
         btn_next.textContent = "Page suivante";
         btn_next.addEventListener('click', () => {
-          location.href='#list?search='+requestParams.get('search')+'&page='+requestParams.get('page')+'&platforms='+requestParams.get('platforms');
+          location.href='#list?search='+requestParams.get('search')+'&page='+requestParams.get('page')+'&platforms='+requestParams.get('platforms')+'&dates='+requestParams.get('dates')+'&ordering='+requestParams.get('ordering');
         })
         div_nav.appendChild(btn_next)
       }
@@ -95,12 +95,13 @@ export const PageList = (urlParams) => {
 
     };
 
-    const fetchList = (url, search, page_size, page, platform) => {
-      console.log(platform)
+    const fetchList = (url, search, page_size, page, platform, dates,ordering) => {
       if (page == null || page == 'null'){page = 1};
       if (search == null || search == 'null'){search = ''};
-      if (platform == null || platform == 'null'){platform = '1'};
-      const finalURL = `${url}?key=${process.env.API_KEY}&page_size=${page_size}&page=${page}&search=${search}&search_precise=1&platforms=${platform}`
+      if (platform == null || platform == 'null'){platform = Array.from({length:200},(v,k)=>k+1).join(',')};
+      if (dates == null || dates == 'null'){dates = ''};
+      if (ordering == null || ordering == 'null'){ordering = ''};
+      const finalURL = `${url}?key=${process.env.API_KEY}&page_size=${page_size}&page=${page}&search=${search}&search_precise=1&platforms=${platform}&dates=${dates}&ordering=${ordering}`
       console.log(finalURL)
       fetch(finalURL)
         .then((response) => response.json())
@@ -113,7 +114,7 @@ export const PageList = (urlParams) => {
         });
     };
 
-    fetchList('https://api.rawg.io/api/games', urlParams.get('search'), 40, urlParams.get('page'), urlParams.get('platforms'));
+    fetchList('https://api.rawg.io/api/games', urlParams.get('search'), 40, urlParams.get('page'), urlParams.get('platforms'),urlParams.get('dates'),urlParams.get('ordering'));
   }
 
   const render = () => {
