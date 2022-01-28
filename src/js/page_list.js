@@ -78,6 +78,13 @@ export const PageList = (urlParams) => {
           <img src=${article.background_image}>
           <h1>${article.name}</h1>
           `
+        let hover_div = document.createElement('div');
+        hover_div.innerHTML=`<p><b>${article.genres.map(genre => genre.name).join('<br>')}</b></p>`;
+        hover_div.classList.add('card-more');
+        hover_div.classList.add('hide');
+        div.appendChild(hover_div);
+        div.addEventListener('mouseover', () => hover_div.classList.remove('hide'));
+        div.addEventListener('mouseout', () => hover_div.classList.add('hide'));
         let platforms_div = document.createElement('div');
         platforms_div.classList.add('footer');
         div.appendChild(platforms_div);
